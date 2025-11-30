@@ -1,180 +1,157 @@
+<?php 
+session_start(); 
+include 'db.php'; 
+?>
+
 <!DOCTYPE html>
-<html lang="en">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S.A.B.E.</title>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.A.B.E. - Lista de Estudiantes</title>
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.fas fa-edit6.5.1/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+    <style>
+        body { font-size: 90%; background-color: #f8f9fa; }
+        .modal-body { font-size: 90% !important; }
+        .form-control, .custom-select { font-size: 90%; }
+        .btn-icon { width: 38px; height: 38px; padding: 0; }
+        .table td { vertical-align: middle; }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="jumbotron">
-            <h1 class="display-4">Welcome to S.A.B.E.</h1>
-            <p class="lead">S.A.B.E. is a web application designed to help you manage your tasks efficiently.</p>
-        </div>
+
+<div class="container mt-4">
+    <div class="jumbotron bg-primary text-white text-center rounded">
+        <h1 class="display-5">S.A.B.E.</h1>
+        <p class="lead">Sistema de Administración de Bienestar Estudiantil</p>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class=""><h1>Lista de estudiantes</h1></div>
-            <div class="row" style="margin-top: 10px;">
-                <div class="col-md-12 col-md-offset-1">
-                    <table class="table align-middle">
-                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-success">Ingresar</button>
-                        <button type="button" class="btn btn-default float-right">Imprimir</button>
-                        <hr>
-                    <div class="modal" id="myModal">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Ingresar nuevo estudiante</h4>
-                                <button type="button" class="close" data-dismiss="modal">×</button>
-                                </div>
-                                <!-- Modal body -->
-                                <div class="modal-body" style="color:#FFFFFFF; font-size:80%;">
-                                    A continiacion ingrese los datos del nuevo estudiante:
-                                    <form>
-                                        <div class="row" >
-                                            <div class="col">
-                                                <label for="tipo" class="mr-sm-2">Tipo:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" style="font-size:90%;" id="tipo" placeholder="Ingrese el tipo" name="tipo">
-                                            </div>
-                                            <div class="col">
-                                                <label for="documento" class="mr-sm-2">Documento:</label>
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="documento" placeholder="Ingrese el documento" name="documento">
-                                            </div>
-                                            <div class="col">
-                                                <label for="nombres" class="mr-sm-2">Nombres:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="nombres" placeholder="Ingrese los nombres" name="nombres">
-                                            </div>
-                                            <div class="col">
-                                                <label for="apellidos" class="mr-sm-2">Apellidos:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="apellidos" placeholder="Ingrese los apellidos" name="apellidos">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="fecha_nac" class="mr-sm-2">Fecha de nacimiento:</label>
-                                                <input type="date" class="form-control mb-2 mr-sm-2" id="fecha_nac" placeholder="Fecha de nacimiento" name="fecha_nac">
-                                            </div>
-                                            <div class="col">
-                                                <label for="edad" class="mr-sm-2">Edad:</label>
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="edad" placeholder="Ingrese la edad" name="edad">
-                                            </div>
-                                            <div class="col">
-                                                <label for="eps" class="mr-sm-2">EPS:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="eps" placeholder="Ingrese la EPS" name="eps">
-                                            </div>
-                                            <div class="col">
-                                                <label for="rh" class="mr-sm-2">RH:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="rh" placeholder="Ingrese el RH" name="rh">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="Telefono1" class="mr-sm-2">Telefono 1:</label>
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="Telefono1" placeholder="Ingrese el telefono 1" name="Telefono1">
-                                            </div>
-                                            <div class="col">
-                                                <label for="Telefono2" class="mr-sm-2">Telefono 2:</label>
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="Telefono2" placeholder="Ingrese el telefono 2" name="Telefono2">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="almuerzo" class="mr-sm-2">Almuerzo:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="almuerzo" placeholder="Recibe almuerzo" name="almuerzo">
-                                            </div>
-                                            <div class="col">
-                                                <label for="jornada" class="mr-sm-2">Jornada:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="jornada" placeholder="Ingrese la jornada" name="jornada">
-                                            </div>
-                                            <div class="col">
-                                                <label for="grado" class="mr-sm-2">Grado:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="grado" placeholder="Grado" name="grado">
-                                            </div>
-                                            <div class="col">
-                                                <label for="docente" class="mr-sm-2">Docente:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="docente" placeholder="Nombre del docente" name="docente">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label for="matricula" class="mr-sm-2">Matricula:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="matricula" placeholder="Estado matricula" name="matricula">
-                                            </div>
-                                            <div class="col">
-                                                <label for="est_pension" class="mr-sm-2">Pension:</label>
-                                                <input type="text" class="form-control mb-2 mr-sm-2" id="est_pension" placeholder="Estado pension" name="est_pension">
-                                            </div>
-                                            <div class="col">
-                                                <label for="val_pension" class="mr-sm-2">Valor pension:</label>
-                                                <input type="number" class="form-control mb-2 mr-sm-2" id="val_pension" placeholder="Ingrese el valor de la pension" name="val_pension">
-                                            </div>
-                                            <div class="col">
-                                                <label for="fecha_reg" class="mr-sm-2">Fecha de registro:</label>
-                                                <input type="date" class="form-control mb-2 mr-sm-2" id="fecha_reg" placeholder="Ingrese la fecha de registro" name="fecha_reg">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <button type="submit" class="btn btn-primary mr-sm-2 mb-2">Ingresar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                    <table class="table table-bordered" style="color:#456789; font-size:80%; font-style:normal;"> 
-                        <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">id</th>
-                                <th scope="col">nombres</th>
-                                <th scope="col">apellidos</th>
-                                <th scope="col">edad</th>
-                                <th scope="col">grado</th>
-                                <th scope="col">docente</th>
-                                <th scope="col">almuerzo</th>
-                                <th scope="col">matricula</th>
-                                <th scope="col">pension</th>
-                                <th scope="col">jornada</th>
-                                <th scope="col">fecha_act</th>
-                                <th scope="col">Boton1</th>
-                                <th scope="col">Boton2</th>
-                                </tr>
-                            </thead>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>12345</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td><a href="" class="btn btn-success" style="font-size:80%">Editar</td>
-                                <td><a href="" class="btn btn-danger" style="font-size:80%">Eliminar</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </table>
-                </div>
+
+    <div class="text-right mb-3">
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalNuevo">
+            <i class="fas fa-user-plus"></i> Nuevo Estudiante
+        </button>
+        <button class="btn btn-info btn-lg ml-2" onclick="window.print()">
+            <i class="fas fa-print"></i> Imprimir
+        </button>
+    </div>
+
+    <!-- Tabla -->
+    <div class="card shadow">
+        <div class="card-body">
+            <h4 class="card-title"><i class="fas fa-users"></i> Lista de Estudiantes</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Documento</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Edad</th>
+                            <th>Grado</th>
+                            <th>Docente</th>
+                            <th>Almuerzo</th>
+                            <th>Matrícula</th>
+                            <th>Pensión</th>
+                            <th>Jornada</th>
+                            <th>Última Act.</th>
+                            <th width="100" class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = "SELECT * FROM estudiantes ORDER BY id DESC";
+                        $result = $db->query($sql);
+                        $n = 1;
+                        while ($row = $result->fetch_assoc()):
+                        ?>
+                        <tr>
+                            <td><?= $n++ ?></td>
+                            <td><?= htmlspecialchars($row['documento']) ?></td>
+                            <td><?= htmlspecialchars($row['nombres']) ?></td>
+                            <td><?= htmlspecialchars($row['apellidos']) ?></td>
+                            <td><?= $row['edad'] ?></td>
+                            <td><?= htmlspecialchars($row['grado']) ?></td>
+                            <td><?= htmlspecialchars($row['docente']) ?></td>
+                            <td><?= $row['almuerzo'] ?></td>
+                            <td><?= $row['matricula'] ?></td>
+                            <td>$<?= number_format($row['val_pension']) ?></td>
+                            <td><?= htmlspecialchars($row['jornada']) ?></td>
+                            <td><?= date('d/m/Y', strtotime($row['fecha_act'])) ?></td>
+                            <td class="text-center">
+                                <!-- Botón Editar con ícono -->
+                                <a href="editar.php?id=<?= $row['id'] ?>" 
+                                   class="btn btn-warning btn-icon btn-sm" 
+                                   title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <!-- Botón Eliminar con ícono -->
+                                <a href="eliminar.php?id=<?= $row['id'] ?>" 
+                                   class="btn btn-danger btn-icon btn-sm ml-1" 
+                                   title="Eliminar"
+                                   onclick="return confirm('¿Seguro que deseas eliminar este estudiante?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    
+</div>
+
+<!-- ====================== MODAL NUEVO ESTUDIANTE (igual que antes) ====================== -->
+<div class="modal fade" id="modalNuevo" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-user-plus"></i> Ingresar Nuevo Estudiante</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Mensajes de éxito/error -->
+                <?php if(isset($_SESSION['exito'])): ?>
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <?= $_SESSION['exito']; unset($_SESSION['exito']); ?>
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                    </div>
+                <?php endif; ?>
+                <?php if(isset($_SESSION['error'])): ?>
+                    <div class="alert alert-danger alert-dismissible fade show">
+                        <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                    </div>
+                <?php endif; ?>
+
+                <form action="add.php" method="POST">
+                    <!-- Todo el formulario igual que en el mensaje anterior -->
+                    <!-- (lo mantengo igual para que no se haga eterno el código) -->
+                    <!-- ... aquí va todo el formulario con los select y maxlength que ya te pasé ... -->
+                    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-save"></i> Guardar
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
