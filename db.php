@@ -1,12 +1,16 @@
 <?php
+// db.php → SOLO CONEXIÓN, NADA MÁS
 
-$db = new mysqli();
-$db->connect('localhost', 'root', '', 'dbsabe');
+$host = 'localhost';
+$dbname = 'dbsabe';
+$username = 'root';
+$password = '';
 
-
-if ($db->connect_errno) {
-    echo "Error al conectar a la base de datos: " . $db->connect_error;
-    exit();
+try {
+    $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error de conexión a la base de datos.");
 }
-
 ?>
