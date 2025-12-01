@@ -14,7 +14,21 @@ $rol = $_SESSION['usuario']['rol'];
     <title>Dashboard - S.A.B.E.</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <style>
+        .jumbotron {
+            background: url("./img/logo.jpg") no-repeat center center;
+            background-size: 45%;
+            padding: 9rem 0.5rem;
+            color: white;
+            text-shadow: 2px 2px 6px #000;
+            margin-bottom: 1rem;
+            border-radius: 30px;
+        }
+    </style>
+
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container-fluid">
@@ -34,14 +48,14 @@ $rol = $_SESSION['usuario']['rol'];
         <?php if($rol === 'administrador'): ?>
             <div class="col-md-3 mb-3"><a href="index.php" class="btn btn-success btn-lg w-100"><i class="fas fa-users"></i> Gestión de Alumnos</a></div>
             <div class="col-md-3 mb-3"><a href="docentes.php" class="btn btn-info btn-lg w-100"><i class="fas fa-chalkboard-teacher"></i> Gestión Docentes</a></div>
-            <div class="col-md-3 mb-3"><a href="certificados.php" class="btn btn-warning btn-lg w-100"><i class="fas fa-file-alt"></i> Certificados</a></div>
+            <div class="col-md-3 mb-3"><a href="certificado.php" class="btn btn-warning btn-lg w-100"><i class="fas fa-file-alt"></i> Certificados</a></div>
             <div class="col-md-3 mb-3"><a href="usuarios.php" class="btn btn-primary btn-lg w-100"><i class="fas fa-user-cog"></i> Administrar Usuarios</a></div>
         <?php endif; ?>
 
         <!-- DOCENTE -->
         <?php if($rol === 'docente'): ?>
             <div class="col-md-6 mb-3"><a href="index.php" class="btn btn-primary btn-lg w-100"><i class="fas fa-clipboard-check"></i> Tomar Asistencia</a></div>
-            <div class="col-md-6 mb-3"><a href="almuerzos.php" class="btn btn-success btn-lg w-100"><i class="fas fa-utensils"></i> Registrar Almuerzo</a></div>
+            <div class="col-md-6 mb-3"><a href="almuerzo.php" class="btn btn-success btn-lg w-100"><i class="fas fa-utensils"></i> Registrar Almuerzo</a></div>
         <?php endif; ?>
 
         <!-- ALUMNO -->
@@ -50,6 +64,13 @@ $rol = $_SESSION['usuario']['rol'];
             <div class="col-md-6 mb-3"><a href="opinion.php" class="btn btn-secondary btn-lg w-100"><i class="fas fa-comment"></i> Dejar Opinión</a></div>
         <?php endif; ?>
     </div>
+    <!-- Jumbotron con logo -->
+    <div class="jumbotron text-center">
+        <h1 class="display-4">S.A.B.E.</h1>
+        <br><br>
+        <h4><strong>Hoy es:</strong> <?= date('d/m/Y') ?></h4>
+    </div>
+
 </div>
 </body>
 </html>

@@ -41,8 +41,15 @@ $docentes = $docentes_stmt->fetchAll(PDO::FETCH_COLUMN);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S.A.B.E. - Lista de Estudiantes</title>
+    <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    
     <style>
         body { font-size: 90%; background-color: #f8f9fa; }
         .modal-body { font-size: 90% !important; }
@@ -151,12 +158,18 @@ $docentes = $docentes_stmt->fetchAll(PDO::FETCH_COLUMN);
                                        onchange="marcarAsistencia(<?= $e['id'] ?>, this.checked)">
                             </td>
                             <td class="text-center">
-                                <a href="update.php?id=<?= $e['id'] ?>" class="btn btn-warning btn-icon btn-sm" title="Editar">
-                                    Editar
+                                <!-- Botón Editar con ícono -->
+                                <a href="update.php?id=<?= $row['id'] ?>" 
+                                   class="btn btn-warning btn-icon btn-sm" 
+                                   title="Editar">
+                                    <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="delete.php?id=<?= $e['id'] ?>" class="btn btn-danger btn-icon btn-sm ml-1" title="Eliminar"
-                                   onclick="return confirm('¿Eliminar estudiante?')">
-                                    Eliminar
+                                <!-- Botón Eliminar con ícono -->
+                                <a href="delete.php?id=<?= $row['id'] ?>" 
+                                   class="btn btn-danger btn-icon btn-sm ml-1" 
+                                   title="Eliminar"
+                                   onclick="return confirm('¿Seguro que deseas eliminar este estudiante?')">
+                                    <i class="fas fa-trash-alt"></i>
                                 </a>
                             </td>
                         </tr>
@@ -165,7 +178,7 @@ $docentes = $docentes_stmt->fetchAll(PDO::FETCH_COLUMN);
                 </table>
             </div>
 
-            <!-- Paginación bonita -->
+            <!-- Paginación -->
             <?php if ($pages > 1): ?>
             <nav class="p-3 bg-light border-top">
                 <ul class="pagination justify-content-center mb-0 mb-0">
