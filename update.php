@@ -4,7 +4,7 @@ include 'db.php';
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     $_SESSION['error'] = "ID no válido.";
-    header("Location: index.php");
+    header("Location: estudiantes.php");
     exit();
 }
 
@@ -16,7 +16,7 @@ $result = $db->query($sql);
 
 if ($result->num_rows == 0) {
     $_SESSION['error'] = "Estudiante no encontrado.";
-    header("Location: index.php");
+    header("Location: estudiantes.php");
     exit();
 }
 
@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($db->query($query)) {
         $_SESSION['exito'] = "Estudiante actualizado correctamente.";
-        header("Location: index.php");
+        header("Location: estudiantes.php");
         exit();
     } else {
         $error = "Error al actualizar: " . $db->error;
@@ -231,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button type="submit" class="btn btn-success btn-lg">
                         <i class="fas fa-save"></i> Guardar Cambios
                     </button>
-                    <a href="index.php" class="btn btn-secondary btn-lg">
+                    <a href="estudiantes.php" class="btn btn-secondary btn-lg">
                         <i class="fas fa-arrow-left"></i> Volver al Listado
                     </a>
                 </div>

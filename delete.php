@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    header("Location: index.php");
+    header("Location: estudiantes.php");
     exit();
 }
 
@@ -18,6 +18,6 @@ if ($db->query($query)) {
     $_SESSION['error'] = "Error al eliminar: " . $db->error;
 }
 
-header("Location: index.php");
+header("Location: estudiantes.php");
 exit();
 ?>

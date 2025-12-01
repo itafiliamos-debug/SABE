@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($db->query($query) === TRUE) {
         $_SESSION['exito'] = "Estudiante registrado correctamente.";
-        header('Location: index.php');
+        header('Location: estudiantes.php');
         exit();
     } else {
         $_SESSION['error'] = "Error al guardar: " . $db->error;
