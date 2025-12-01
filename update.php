@@ -10,70 +10,63 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = (int)$_GET['id'];
 
-// Obtener datos del estudiante
-$sql = "SELECT * FROM estudiantes WHERE id = $id";
-$result = $db->query($sql);
+// === OBTENER ESTUDIANTE CON PDO (CORRECTO) ===
+$stmt = $db->prepare("SELECT * FROM estudiantes WHERE id = ? LIMIT 1");
+$stmt->execute([$id]);
+$est = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($result->num_rows == 0) {
+if (!$est) {
     $_SESSION['error'] = "Estudiante no encontrado.";
     header("Location: estudiantes.php");
     exit();
 }
 
-$est = $result->fetch_assoc();
+// === CARGAR DOCENTES DINÁMICAMENTE ===
+$docentes = $db->query("SELECT DISTINCT nombre FROM docentes ORDER BY nombre")->fetchAll(PDO::FETCH_COLUMN);
 
-// Procesar formulario de actualización
+// === PROCESAR FORMULARIO ===
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $tipo        = $db->real_escape_string($_POST['tipo']);
-    $documento   = $db->real_escape_string($_POST['documento']);
-    $nombres     = $db->real_escape_string($_POST['nombres']);
-    $apellidos   = $db->real_escape_string($_POST['apellidos']);
+    $tipo        = $_POST['tipo'];
+    $documento   = $_POST['documento'];
+    $nombres     = trim($_POST['nombres']);
+    $apellidos   = trim($_POST['apellidos']);
     $fecha_nac   = $_POST['fecha_nac'];
     $edad        = (int)$_POST['edad'];
-    $eps         = $db->real_escape_string($_POST['eps']);
-    $rh          = strtoupper($db->real_escape_string($_POST['rh']));
-    $grado       = $db->real_escape_string($_POST['grado']);
-    $docente     = $db->real_escape_string($_POST['docente']);
-    $acudiente   = $db->real_escape_string($_POST['acudiente']);
-    $telefono1   = $db->real_escape_string($_POST['Telefono1']);
-    $telefono2   = $db->real_escape_string($_POST['Telefono2'] ?? '');
-    $almuerzo    = $db->real_escape_string($_POST['almuerzo']);
-    $matricula   = $db->real_escape_string($_POST['matricula']);
-    $val_pension = $db->real_escape_string($_POST['val_pension']);
-    $est_pension = $db->real_escape_string($_POST['est_pension']);
-    $jornada     = $db->real_escape_string($_POST['jornada']);
+    $eps         = trim($_POST['eps']);
+    $rh          = strtoupper(trim($_POST['rh']));
+    $grado       = $_POST['grado'];
+    $docente     = $_POST['docente'];
+    $acudiente   = trim($_POST['acudiente']);
+    $telefono1   = $_POST['Telefono1'];
+    $telefono2   = $_POST['Telefono2'] ?? '';
+    $almuerzo    = $_POST['almuerzo'];
+    $matricula   = $_POST['matricula'];
+    $val_pension = (int)$_POST['val_pension'];
+    $est_pension = $_POST['est_pension'];
+    $jornada     = $_POST['jornada'];
     $fecha_reg   = $_POST['fecha_reg'];
 
-    $query = "UPDATE estudiantes SET
-                tipo='$tipo',
-                documento='$documento',
-                nombres='$nombres',
-                apellidos='$apellidos',
-                fecha_nac='$fecha_nac',
-                edad=$edad,
-                eps='$eps',
-                rh='$rh',
-                grado='$grado',
-                docente='$docente',
-                acudiente='$acudiente',
-                telefono1='$telefono1',
-                telefono2='$telefono2',
-                almuerzo='$almuerzo',
-                matricula='$matricula',
-                val_pension='$val_pension',
-                est_pension='$est_pension',
-                jornada='$jornada',
-                fecha_reg='$fecha_reg',
-                fecha_act=NOW()
-              WHERE id=$id";
+    try {
+        $update = $db->prepare("UPDATE estudiantes SET
+            tipo = ?, documento = ?, nombres = ?, apellidos = ?, fecha_nac = ?,
+            edad = ?, eps = ?, rh = ?, grado = ?, docente = ?, acudiente = ?,
+            telefono1 = ?, telefono2 = ?, almuerzo = ?, matricula = ?,
+            val_pension = ?, est_pension = ?, jornada = ?, fecha_reg = ?, fecha_act = NOW()
+            WHERE id = ?");
 
-    if ($db->query($query)) {
+        $update->execute([
+            $tipo, $documento, $nombres, $apellidos, $fecha_nac,
+            $edad, $eps, $rh, $grado, $docente, $acudiente,
+            $telefono1, $telefono2, $almuerzo, $matricula,
+            $val_pension, $est_pension, $jornada, $fecha_reg, $id
+        ]);
+
         $_SESSION['exito'] = "Estudiante actualizado correctamente.";
         header("Location: estudiantes.php");
         exit();
-    } else {
-        $error = "Error al actualizar: " . $db->error;
+
+    } catch (Exception $e) {
+        $error = "Error al guardar: " . $e->getMessage();
     }
 }
 ?>
@@ -96,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="container mt-4 mb-5">
-    <h2 class="text-center text-primary mb-4">
+    <h2 class="text-center text-success mb-4">
         <i class="fas fa-user-edit"></i> Editar Estudiante
     </h2>
 
@@ -222,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="col-md-3 mb-3">
                         <label>Fecha Registro *</label>
-                        <input type="date" name="fecha_reg" class="form-control" value="<?= substr($est['fecha_reg'], 0, 10) ?>" required>
+                        <input type="date" name="fecha_reg" class="form-control" value="<?= $est['fecha_reg'] ?>" required>
                     </div>
 
                 </div>

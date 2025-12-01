@@ -34,7 +34,7 @@
             justify-content: center;
             position: relative;
             text-align: center;
-            padding: 20px;
+            padding: 10px;
         }
 
         .image-logo {
@@ -52,7 +52,7 @@
             font-size: 4rem;    
             color: #3F94CA;
             text-shadow: 3px 3px 0px #2775a5ff, 10px 10px 0px rgba(0,0,0,0.1);
-            margin-top: 3rem;
+            margin-top: 1rem;
             animation: bounceIn 2s;
         }
 
@@ -64,7 +64,7 @@
         }
 
         .year-prefix {
-            font-size: 10rem;
+            font-size: 8rem;
             font-weight: 900;
             color: #b206ddff;
             text-shadow: 8px 8px 0px #370344ff;
@@ -80,7 +80,7 @@
         }
 
         .number-5, .number-6 {
-            font-size: 10rem;
+            font-size: 8rem;
             font-weight: 900;
             font-family: 'Fredoka One', cursive;
             text-shadow: 8px 8px 0px #370344ff;
@@ -95,7 +95,7 @@
 
         .number-6 {
             position: absolute;
-            font-size: 11rem;
+            font-size: 9rem;
             top: 50%;
             left: 1px;
             transform: translateY(-50%) scale(0);
@@ -109,7 +109,7 @@
         #welcomeText {
             font-size: 2.6rem;
             color: #2c3e50;
-            margin-top: 10px;
+            margin-top: 2px;
             opacity: 0;
             transition: opacity 2s ease-in-out;
             font-weight: 700;
@@ -133,9 +133,28 @@
             transition: all 0.4s;
             z-index: 1000;
         }
+        .text-login{
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px !important;
+            text-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            margin-top: 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s;
+            z-index: 1000;
+        }
         .login-btn:hover {
             transform: scale(1.25) rotate(12deg);
             background: #3498db;
+            color: white;
+        }
+        .text-login:hover {
+            transform: scale(1.25) rotate(12deg);
             color: white;
         }
 
@@ -189,6 +208,9 @@
     <!-- Candado login -->
     <div class="login-btn" id="loginBtn">
         <i class="fas fa-user-lock"></i>
+    </div>
+    <div class="text-login">
+       <p>Ingresar al sistema SABE</p>
     </div>
     <!-- Logo e título -->
     <div class="image-logo">

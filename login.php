@@ -40,7 +40,7 @@ if ($_POST) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
-        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100vh; }
+        body { background: linear-gradient(135deg, #a8e6cf, #764ba2, #ff9a9e); height: 100vh; }
         .login-box { max-width: 400px; margin: auto; margin-top: 5%; }
         .card { border-radius: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
     </style>
@@ -72,7 +72,7 @@ if ($_POST) {
             
             <div class="text-center mt-3">
                 <small>Prueba:<br>
-                admin@sabe.com | docente@sabe.com | alumnos@gmail.com<br>
+                admin@sabe.com | docente@sabe.com | alumnos@sabe.com<br>
                 Contraseña: <strong>123456</strong></small>
             </div>
         </div>

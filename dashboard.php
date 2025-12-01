@@ -25,6 +25,14 @@ $rol = $_SESSION['usuario']['rol'];
             margin-bottom: 1rem;
             border-radius: 30px;
         }
+        .btn-almuerzo {
+            background: #ff7300ff;
+            color: black;
+        }
+        .btn-opinion {
+            background: linear-gradient(135deg, #a8e6cf, #dcedc1, #ff9a9e);
+            color: black;
+        }
     </style>
 
 </head>
@@ -32,7 +40,7 @@ $rol = $_SESSION['usuario']['rol'];
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.php"><i class="fas fa-school"></i> S.A.B.E.</a>
+        <a class="navbar-brand" href="dashboard.php"><i class="fas fa-school"></i> S.A.B.E.   Menú principal</a>
         <div class="d-flex align-items-center text-white">
             <span class="me-3"><?= $_SESSION['usuario']['nombre'] ?> (<?= ucfirst($rol) ?>)</span>
             <a href="logout.php" class="btn btn-outline-light btn-sm"><i class="fas fa-sign-out-alt"></i> Salir</a>
@@ -54,14 +62,14 @@ $rol = $_SESSION['usuario']['rol'];
 
         <!-- DOCENTE -->
         <?php if($rol === 'docente'): ?>
-            <div class="col-md-6 mb-3"><a href="estudiantes.php" class="btn btn-primary btn-lg w-100"><i class="fas fa-clipboard-check"></i> Tomar Asistencia</a></div>
-            <div class="col-md-6 mb-3"><a href="almuerzo.php" class="btn btn-success btn-lg w-100"><i class="fas fa-utensils"></i> Registrar Almuerzo</a></div>
+            <div class="col-md-6 mb-3"><a href="estudiantes.php" class="btn btn-success btn-lg w-100"><i class="fas fa-clipboard-check"></i> Tomar Asistencia</a></div>
+            <div class="col-md-6 mb-3"><a href="almuerzo.php" class="btn btn-almuerzo btn-lg w-100"><i class="fas fa-utensils"></i> Registrar Almuerzo</a></div>
         <?php endif; ?>
 
         <!-- ALUMNO -->
         <?php if($rol === 'alumno'): ?>
-            <div class="col-md-6 mb-3"><a href="certificado_solicitar.php" class="btn btn-info btn-lg w-100"><i class="fas fa-certificate"></i> Solicitar Certificado</a></div>
-            <div class="col-md-6 mb-3"><a href="opinion.php" class="btn btn-secondary btn-lg w-100"><i class="fas fa-comment"></i> Dejar Opinión</a></div>
+            <div class="col-md-6 mb-3"><a href="certificado.php" class="btn btn-warning btn-lg w-100"><i class="fas fa-file-alt"></i> Solicitar Certificado</a></div>
+            <div class="col-md-6 mb-3"><a href="opiniones.php" class="btn btn-opinion btn-lg w-100"><i class="fas fa-comment"></i> Dejar Opinión</a></div>
         <?php endif; ?>
     </div>
     <!-- Jumbotron con logo -->

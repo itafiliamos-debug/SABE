@@ -97,9 +97,9 @@
 <body>
 
 <div class="container-full" id="homeScreen">
-    <!-- Icono login (esquina superior derecha) -->
+    <!-- Icono login -->
     <div class="login-icon" id="loginBtn">
-        <i class="fas fa-user-lock"></i>
+       <i class="fas fa-user-lock"></i>
     </div>
 
     <!-- Contenido principal -->

@@ -2,7 +2,7 @@
 session_start();
 include 'db.php';
 
-if (!isset($_SESSION['usuario']) || !in_array($_SESSION['usuario']['rol'], ['administrador', 'docente'])) {
+if (!isset($_SESSION['usuario']) || !in_array($_SESSION['usuario']['rol'], ['administrador', 'docente', 'alumno'])) {
     header("Location: login.php");
     exit();
 }
@@ -50,7 +50,7 @@ if ($_POST && !empty($_POST['documento'])) {
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-warning text-white text-center">
+                <div class="card-header bg-warning text-dark text-center">
                     <h4>Generar Certificado de Estudio</h4>
                 </div>
                 <div class="card-body">
