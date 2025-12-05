@@ -1,5 +1,5 @@
 <?php
-// db.php → SOLO CONEXIÓN, NADA MÁS
+// db.php
 
 $host = 'localhost';
 $dbname = 'dbsabe';

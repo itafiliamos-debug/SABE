@@ -1,8 +1,24 @@
 {
-    "functions": {
-        "api/**/*.php": { "runtime": "vercel-php@0.6.0" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "@vercel/php"
     },
-    "routes": [
-        { "src": "/(.*)", "dest": "/api/index.php" }
-    ]
+    {
+      "src": "**/*.{html,css,js,png,jpg,gif,ico,svg,pdf}",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
+  ],
+  "functions": {
+    "api/index.php": {
+      "maxDuration": 30 
+    }
+  }
 }
