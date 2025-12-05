@@ -100,7 +100,7 @@
             left: 1px;
             transform: translateY(-50%) scale(0);
             color: #27ae60;
-            text-shadow: 8px 8px 0px #1e8449;
+            text-shadow: 8px 8px 0px #104b29ff;
             opacity: 0;
             animation: appear6 2s forwards;
             animation-delay: 4s;
@@ -229,7 +229,7 @@
     </div>
 
     <!-- Texto que aparece al final -->
-    <p id="welcomeText">¡Bienvenidos al año 2026!</p>
+    <p id="welcomeText">¡Les damos la bienvenida y les deseamos un próspero año 2026!</p>
 </div>
 
 <!-- Contenedor confeti -->
