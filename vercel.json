@@ -34,10 +34,9 @@
     }
   ],
   "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.7.4",
-      "maxDuration": 30,
-      "methods": ["GET", "POST", "OPTIONS"] 
+    "api/index.php": {
+      "runtime": "@vercel/php@1.0.0",
+      "maxDuration": 30
     }
   }
 }
