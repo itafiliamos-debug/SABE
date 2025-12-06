@@ -1,21 +1,15 @@
 {
   "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*\\.php)",
-      "dest": "/api/index.php"
+      "source": "/(.*\\.php)",
+      "destination": "/api/index.php"
     },
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
+      "source": "/(.*)",
+      "destination": "/api/index.php"
     }
   ],
-  "functions": {
-    "api/index.php": {
-      "runtime": "@vercel/php@1.0.0",
-      "maxDuration": 30
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
@@ -25,5 +19,11 @@
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/index.php": {
+      "runtime": "@vercel/php@1.0.0",
+      "maxDuration": 30
+    }
+  }
 }
