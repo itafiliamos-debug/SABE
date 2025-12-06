@@ -1,16 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/index.php",
-      "use": "@vercel/php"
-    },
-    {
-      "src": "**/*.{html,css,js,png,jpg,gif,ico,svg,pdf}",
-      "use": "@vercel/static"
-    }
-  ],
   "routes": [
+    {
+      "src": "/(.*\\.php)",
+      "dest": "/api/index.php"
+    },
     {
       "src": "/(.*)",
       "dest": "/api/index.php"
@@ -18,7 +12,18 @@
   ],
   "functions": {
     "api/index.php": {
-      "maxDuration": 30 
+      "runtime": "@vercel/php@1.0.0",
+      "maxDuration": 30
     }
-  }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    }
+  ]
 }
