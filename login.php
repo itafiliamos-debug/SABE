@@ -1,5 +1,6 @@
 <?php
 
+
 if (isset($_SESSION['usuario'] ?? null)) {
     header("Location: dashboard.php");
     exit();
@@ -8,11 +9,11 @@ if (isset($_SESSION['usuario'] ?? null)) {
 $mensaje = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once 'db.php'; 
+    require_once 'db.php';
 
     $email    = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
-    
+
     if ($email === '' || $password === '') {
         $mensaje = "Por favor completa todos los campos";
     } else {
@@ -22,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($usuario && password_verify($password, $usuario['password'])) {
-                
                 session_regenerate_id(true);
 
                 $_SESSION['usuario'] = [
@@ -31,20 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'email'  => $usuario['email'],
                     'rol'    => $usuario['rol']
                 ];
-                
+
                 header("Location: dashboard.php");
                 exit();
             } else {
                 $mensaje = "Email o contraseña incorrectos";
             }
         } catch (Exception $e) {
-            
             $mensaje = "Error del sistema. Intenta más tarde.";
         }
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
