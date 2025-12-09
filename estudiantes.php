@@ -50,6 +50,7 @@ $docentes = $docentes_stmt->fetchAll(PDO::FETCH_COLUMN);
         .btn-icon { width: 34px; height: 34px; padding: 0; line-height: 34px; text-align: center; }
         .table th { cursor: pointer; }
         .table th:hover { background-color: #e9ecef; }
+        .navbar-brand:hover { color: #000 !important; }
         .asistencia-check { width: 30px; height: 30px; cursor: pointer; }
         .buscador { border-radius: 30px; }
         .jumbotron {

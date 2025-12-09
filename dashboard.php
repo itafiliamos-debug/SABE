@@ -33,6 +33,7 @@ $rol = $_SESSION['usuario']['rol'];
             background: linear-gradient(135deg, #a8e6cf, #dcedc1, #ff9a9e);
             color: black;
         }
+        .navbar-brand:hover { color: #000 !important; }
     </style>
 
 </head>
@@ -40,7 +41,7 @@ $rol = $_SESSION['usuario']['rol'];
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="dashboard.php"><i class="fas fa-school"></i> S.A.B.E.   Menú principal</a>
+        <a class="navbar-brand" href="dashboard.php"><i class="fas fa-school"></i> S.A.B.E.</a>
         <div class="d-flex align-items-center text-white">
             <span class="me-3"><?= $_SESSION['usuario']['nombre'] ?> (<?= ucfirst($rol) ?>)</span>
             <a href="logout.php" class="btn btn-outline-light btn-sm"><i class="fas fa-sign-out-alt"></i> Salir</a>

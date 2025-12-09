@@ -47,13 +47,14 @@ $docentes = $stmt->fetchAll();
     <style>
         body { background: #f8f9fa; font-size: 90%; }
         .card { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .navbar-brand:hover { color: #000 !important; }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-dark bg-secondary mb-4">
     <div class="container-fluid">
-        <a href="dashboard.php" class="navbar-brand">S.A.B.E.</a>
+        <a href="dashboard.php" class="navbar-brand">S.A.B.E.   Menú principal</a>
         <span class="text-white">Admin: <?= $_SESSION['usuario']['nombre'] ?></span>
         <a href="logout.php" class="btn btn-outline-light btn-sm">Cerrar sesión</a>
     </div>

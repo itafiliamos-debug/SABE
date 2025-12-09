@@ -34,13 +34,14 @@ if ($_POST && !empty($_POST['documento'])) {
         body { background: #f8f9fa; font-size: 95%; }
         .card { box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
         .form-control:focus { border-color: #007bff; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
-    </style>
+        .navbar-brand:hover { color: #000 !important; }
+        </style>
 </head>
 <body>
 
 <nav class="navbar navbar-dark bg-secondary shadow mb-4">
     <div class="container-fluid">
-        <a href="dashboard.php" class="navbar-brand">S.A.B.E.</a>
+        <a href="dashboard.php" class="navbar-brand">S.A.B.E.   Menú principal</a>
         <span class="text-white">Generar Certificado de Estudio</span>
         <a href="logout.php" class="btn btn-outline-light btn-sm">Cerrar sesión</a>
     </div>

@@ -61,13 +61,14 @@ $estudiantes = $stmt->fetchAll();
         .badge-si { background: #28a745; }
         .badge-no { background: #dc3545; }
         .navbar-fixed { position: sticky; top: 0; z-index: 1000; }
+        .navbar-brand:hover { color: #000 !important; }
     </style>
 </head>
 <body>
 
 <nav class="navbar navbar-dark bg-secondary shadow navbar-fixed">
     <div class="container-fluid">
-        <a href="dashboard.php" class="navbar-brand">S.A.B.E.</a>
+        <a href="dashboard.php" class="navbar-brand">S.A.B.E.   Menú principal</a>
         <span class="text-white">Almuerzo del día: <?= date('d/m/Y') ?></span>
         <a href="logout.php" class="btn btn-outline-light btn-sm">Cerrar sesión</a>
     </div>

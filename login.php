@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <div class="text-center mt-3 text-muted">
-                <small>admin@sabe.com | docente@sabe.com | alumno@sabe.com → 123456</small>
+                <small>admin@sabe.com | docente@sabe.com | alumnos@sabe.com → 123456</small>
             </div>
         </div>
     </div>

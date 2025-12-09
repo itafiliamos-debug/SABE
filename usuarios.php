@@ -52,6 +52,7 @@ $usuarios = $stmt->fetchAll();
         body { background: #f8f9fa; font-size: 90%; }
         .card { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .table th { background-color: #e9ecef; }
+        .navbar-brand:hover { color: #000 !important; }
     </style>
 </head>
 <body>
@@ -59,7 +60,7 @@ $usuarios = $stmt->fetchAll();
 <!-- Navbar -->
 <nav class="navbar navbar-dark bg-secondary shadow mb-4">
     <div class="container-fluid">
-        <a href="dashboard.php" class="navbar-brand">S.A.B.E.</a>
+        <a href="dashboard.php" class="navbar-brand">S.A.B.E.    Menú principal</a>
         <span class="text-white">Administrador: <?= $_SESSION['usuario']['nombre'] ?></span>
         <a href="logout.php" class="btn btn-outline-light btn-sm">Cerrar sesión</a>
     </div>
