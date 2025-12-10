@@ -55,10 +55,11 @@ $rol = $_SESSION['usuario']['rol'];
     <div class="row mt-4">
         <!-- ADMINISTRADOR -->
         <?php if($rol === 'administrador'): ?>
-            <div class="col-md-3 mb-3"><a href="estudiantes.php" class="btn btn-success btn-lg w-100"><i class="fas fa-users"></i> Gestión de Alumnos</a></div>
-            <div class="col-md-3 mb-3"><a href="docentes.php" class="btn btn-info btn-lg w-100"><i class="fas fa-chalkboard-teacher"></i> Gestión Docentes</a></div>
-            <div class="col-md-3 mb-3"><a href="certificado.php" class="btn btn-warning btn-lg w-100"><i class="fas fa-file-alt"></i> Certificados</a></div>
-            <div class="col-md-3 mb-3"><a href="usuarios.php" class="btn btn-primary btn-lg w-100"><i class="fas fa-user-cog"></i> Administrar Usuarios</a></div>
+            <div class="col-md-4 mb-3"><a href="estudiantes.php" class="btn btn-success btn-lg w-100"><i class="fas fa-users"></i> Gestión de Alumnos</a></div>
+            <div class="col-md-4 mb-3"><a href="docentes.php" class="btn btn-info btn-lg w-100"><i class="fas fa-chalkboard-teacher"></i> Gestión Docentes</a></div>
+            <div class="col-md-4 mb-3"><a href="certificado.php" class="btn btn-warning btn-lg w-100"><i class="fas fa-file-alt"></i> Certificados</a></div>
+            <div class="col-md-6 mb-3"><a href="almuerzo.php" class="btn btn-almuerzo btn-lg w-100"><i class="fas fa-utensils"></i> Registrar Almuerzo</a></div>
+            <div class="col-md-6 mb-3"><a href="usuarios.php" class="btn btn-primary btn-lg w-100"><i class="fas fa-user-cog"></i> Administrar Usuarios</a></div>
         <?php endif; ?>
 
         <!-- DOCENTE -->
